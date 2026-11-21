@@ -1,0 +1,13 @@
+name: survivalUtils
+version: '${version}'
+
+main: es.javierdz.survivalUtils.SurvivalUtils
+api-version: '26.1'
+
+commands:
+  eval:
+    description: evaluar una expresion
+    usage: /eval <expresion>
+  toggleend:
+    description: Activa o desactiva el acceso al End.
+    usage: /toggleend
