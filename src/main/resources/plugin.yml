@@ -11,3 +11,6 @@ commands:
   toggleend:
     description: Activa o desactiva el acceso al End.
     usage: /toggleend
+  ping:
+    description: te dice tu ping.
+    usage: /ping [jugador]

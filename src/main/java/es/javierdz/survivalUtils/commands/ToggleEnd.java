@@ -18,20 +18,21 @@ public class ToggleEnd implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        if (!(sender.getName().equals("Pepeluisa"))) {
-            sender.sendMessage(ChatColor.getColor("&cNo tienes permiso para ejecutar este comando"));
+        if (sender.getName().equals("Pepeluisa") || sender == Bukkit.getConsoleSender()) {
+            boolean nuevoEstado = !plugin.isEndHabilitado();
+            plugin.setEndHabilitado(nuevoEstado);
+
+            if (nuevoEstado) {
+                Bukkit.broadcastMessage(ChatColor.getColor("&a&l[+] El END ha sido HABILITADO"));
+
+            } else {
+                Bukkit.broadcastMessage(ChatColor.getColor("&c&l[-] El END ha sido DESHABILITADO"));
+            }
+
             return true;
         }
+        sender.sendMessage(ChatColor.getColor("&cNo tienes permiso para ejecutar este comando"));
 
-        boolean nuevoEstado = !plugin.isEndHabilitado();
-        plugin.setEndHabilitado(nuevoEstado);
-        
-        if (nuevoEstado) {
-            Bukkit.broadcastMessage(ChatColor.getColor("&a&l[+] El END ha sido HABILITADO"));
-
-        } else {
-            Bukkit.broadcastMessage(ChatColor.getColor("&c&l[-] El END ha sido DESHABILITADO"));
-        }
         return true;
     }
 }

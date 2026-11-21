@@ -1,6 +1,7 @@
 package es.javierdz.survivalUtils;
 
 import es.javierdz.survivalUtils.commands.Eval;
+import es.javierdz.survivalUtils.commands.Ping;
 import es.javierdz.survivalUtils.commands.ToggleEnd;
 import es.javierdz.survivalUtils.listeners.EndBlockListener;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -18,6 +19,9 @@ public final class SurvivalUtils extends JavaPlugin {
         }
         if (getCommand("toggleend") != null) {
             getCommand("toggleend").setExecutor(new ToggleEnd(this));
+        }
+        if (getCommand("ping") != null) {
+            getCommand("ping").setExecutor(new Ping());
         }
         getServer().getPluginManager().registerEvents(new EndBlockListener(this), this);
         getLogger().info("Plugin cargado correctamente");
