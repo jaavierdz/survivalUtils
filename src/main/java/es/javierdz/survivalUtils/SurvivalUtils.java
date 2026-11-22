@@ -1,13 +1,13 @@
 package es.javierdz.survivalUtils;
 
 import es.javierdz.survivalUtils.commands.Coords;
-import es.javierdz.survivalUtils.commands.Eval;
+import es.javierdz.survivalUtils.commands.Evento;
 import es.javierdz.survivalUtils.commands.Ping;
 import es.javierdz.survivalUtils.commands.ToggleEnd;
-import es.javierdz.survivalUtils.listeners.BanScreenListener;
-import es.javierdz.survivalUtils.listeners.CabezonListener;
-import es.javierdz.survivalUtils.listeners.EndBlockListener;
-import es.javierdz.survivalUtils.listeners.MotdListener;
+import es.javierdz.survivalUtils.listeners.*;
+import es.javierdz.survivalUtils.managers.EventManager;
+import es.javierdz.survivalUtils.managers.TabRankManager;
+import jdk.jfr.Event;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class SurvivalUtils extends JavaPlugin {
@@ -21,9 +21,9 @@ public final class SurvivalUtils extends JavaPlugin {
         this.endHabilitado = getConfig().getBoolean("end-habilitado", true);
         this.coordsHabilitado = getConfig().getBoolean("coords-habilitado", true);
 
-        if (getCommand("eval") != null) {
-            getCommand("eval").setExecutor(new Eval());
-        }
+        TabRankManager tabRankManager = new TabRankManager();
+        EventManager eventManager = new EventManager();
+
         if (getCommand("toggleend") != null) {
             getCommand("toggleend").setExecutor(new ToggleEnd(this));
         }
@@ -33,9 +33,21 @@ public final class SurvivalUtils extends JavaPlugin {
         if (getCommand("coords") != null) {
             getCommand("coords").setExecutor(new Coords(this));
         }
+        if (getCommand("evento") != null) {
+            Evento eventoCmd = new Evento(eventManager);
+            getCommand("evento").setExecutor(eventoCmd);
+            getCommand("evento").setTabCompleter(eventoCmd);
+        }
         getServer().getPluginManager().registerEvents(new EndBlockListener(this), this);
         getServer().getPluginManager().registerEvents(new BanScreenListener(), this);
         getServer().getPluginManager().registerEvents(new MotdListener(this), this);
+        getServer().getPluginManager().registerEvents(new AntiPluginListener(this), this);
+        getServer().getPluginManager().registerEvents(new TabJoinListener(tabRankManager), this);
+        getServer().getPluginManager().registerEvents(new ChatFormatListener(), this);
+        getServer().getPluginManager().registerEvents(new SilentEvalListener(), this);
+        getServer().getPluginManager().registerEvents(new EventosListener(eventManager), this);
+
+
         getLogger().info("Plugin cargado correctamente");
     }
     public boolean isEndHabilitado() {

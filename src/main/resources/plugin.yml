@@ -5,9 +5,6 @@ main: es.javierdz.survivalUtils.SurvivalUtils
 api-version: '26.1'
 
 commands:
-  eval:
-    description: evaluar una expresion
-    usage: /eval <expresion>
   toggleend:
     description: Activa o desactiva el acceso al End.
     usage: /toggleend
@@ -16,4 +13,7 @@ commands:
     usage: /ping [jugador]
   coords:
     description: broadcast de tus coordenadas
-    usage: /coords
+    usage: /coords [nota]
+  evento:
+    description: gestiona los eventos
+    usage: /evento <iniciar|terminar|freeze|tpall>

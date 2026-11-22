@@ -18,7 +18,7 @@ public class ToggleEnd implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        if (sender.getName().equals("Pepeluisa") || sender == Bukkit.getConsoleSender()) {
+        if (sender.getName().equals("Pepeluisa")) {
             boolean nuevoEstado = !plugin.isEndHabilitado();
             plugin.setEndHabilitado(nuevoEstado);
 
