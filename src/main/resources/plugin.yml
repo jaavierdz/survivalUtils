@@ -14,3 +14,6 @@ commands:
   ping:
     description: te dice tu ping.
     usage: /ping [jugador]
+  coords:
+    description: broadcast de tus coordenadas
+    usage: /coords
