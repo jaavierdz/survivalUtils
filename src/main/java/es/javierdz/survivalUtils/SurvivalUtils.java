@@ -7,6 +7,7 @@ import es.javierdz.survivalUtils.commands.ToggleEnd;
 import es.javierdz.survivalUtils.listeners.BanScreenListener;
 import es.javierdz.survivalUtils.listeners.CabezonListener;
 import es.javierdz.survivalUtils.listeners.EndBlockListener;
+import es.javierdz.survivalUtils.listeners.MotdListener;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class SurvivalUtils extends JavaPlugin {
@@ -18,7 +19,7 @@ public final class SurvivalUtils extends JavaPlugin {
     public void onEnable() {
         saveDefaultConfig();
         this.endHabilitado = getConfig().getBoolean("end-habilitado", true);
-    this.coordsHabilitado = getConfig().getBoolean("coords-habilitado", true);
+        this.coordsHabilitado = getConfig().getBoolean("coords-habilitado", true);
 
         if (getCommand("eval") != null) {
             getCommand("eval").setExecutor(new Eval());
@@ -34,6 +35,7 @@ public final class SurvivalUtils extends JavaPlugin {
         }
         getServer().getPluginManager().registerEvents(new EndBlockListener(this), this);
         getServer().getPluginManager().registerEvents(new BanScreenListener(), this);
+        getServer().getPluginManager().registerEvents(new MotdListener(this), this);
         getLogger().info("Plugin cargado correctamente");
     }
     public boolean isEndHabilitado() {
