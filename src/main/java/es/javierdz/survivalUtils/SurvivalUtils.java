@@ -69,6 +69,7 @@ public final class SurvivalUtils extends JavaPlugin {
     }
     @Override
     public void onDisable() {
-        // Plugin shutdown logic
+        // spoiler no desregistra na
+        getLogger().info("Plugin apagado y clases desregistradas");
     }
 }
