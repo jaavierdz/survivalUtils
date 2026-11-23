@@ -50,7 +50,7 @@ public class EventosListener implements Listener {
 
     @EventHandler
     public void onBlockPlace(BlockPlaceEvent event) {
-        if (!eventManager.isEventoActivo() || !eventManager.isProtegerBloques()) {
+        if (!eventManager.isEventoActivo() && !eventManager.isProtegerBloques()) {
             return;
         }
         if (!puedeSaltarseReglas(event.getPlayer())) {
@@ -62,7 +62,7 @@ public class EventosListener implements Listener {
 
     @EventHandler
     public void onPlayerDeath(PlayerDeathEvent event) {
-        if (!eventManager.isEventoActivo() || !eventManager.isKeepInventoryEvento()) return;
+        if (!eventManager.isEventoActivo() && !eventManager.isKeepInventoryEvento()) return;
         event.setKeepInventory(true);
         event.setKeepLevel(true);
         event.getDrops().clear();
@@ -71,7 +71,7 @@ public class EventosListener implements Listener {
 
     @EventHandler
     public void onFoodLevelChange(FoodLevelChangeEvent event) {
-        if (!eventManager.isEventoActivo() || !eventManager.isSinHambre()) return;
+        if (!eventManager.isEventoActivo() && !eventManager.isSinHambre()) return;
 
         if (event.getEntity() instanceof Player) {
             event.setCancelled(true);
@@ -81,7 +81,7 @@ public class EventosListener implements Listener {
 
     @EventHandler
     public void onFallDamage(EntityDamageEvent event) {
-        if (!eventManager.isEventoActivo() || !eventManager.isSinCaida()) {
+        if (!eventManager.isEventoActivo() && !eventManager.isSinCaida()) {
             return;
         }
         if (event.getEntity() instanceof Player && event.getCause() == EntityDamageEvent.DamageCause.FALL) {

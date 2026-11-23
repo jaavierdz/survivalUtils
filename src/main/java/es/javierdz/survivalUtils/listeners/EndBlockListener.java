@@ -58,11 +58,7 @@ public class EndBlockListener implements Listener{
         if (ahora - ultimoAviso < 3000 ) return;
 
         cooldownAvisos.put(maricon.getUniqueId(), ahora);
-        Player pepeluisa = Bukkit.getPlayerExact("Pepeluisa");
-        if (pepeluisa != null && pepeluisa.isOnline()) {
-            String mensaje = "el maricon de " + maricon.getName() + " ha intentado entrar al end";
-            pepeluisa.sendMessage(mensaje);
-        }
+        Bukkit.broadcastMessage(org.bukkit.ChatColor.translateAlternateColorCodes('&', "&cEl maricon &4" + maricon.getName() + " &cha intentado entrar al end"));
 
     }
 
